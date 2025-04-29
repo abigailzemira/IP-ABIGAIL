@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "Arts" },
+  { "id": 2, "name": "Fiction" },
+  { "id": 3, "name": "Business & Finance" },
+  { "id": 4, "name": "Science & Mathematics" },
+  { "id": 5, "name": "History" }
+]

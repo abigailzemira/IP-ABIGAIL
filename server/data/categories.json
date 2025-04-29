@@ -1,0 +1,14 @@
+[
+  { "name": "Architecture", "CategoryHeaderId": 1 },
+  { "name": "Design", "CategoryHeaderId": 1 },
+  { "name": "Film", "CategoryHeaderId": 1 },
+  { "name": "Music", "CategoryHeaderId": 1 },
+  { "name": "Fantasy", "CategoryHeaderId": 2 },
+  { "name": "Historical Fiction", "CategoryHeaderId": 2 },
+  { "name": "Humor", "CategoryHeaderId": 2 },
+  { "name": "Literature", "CategoryHeaderId": 2 },
+  { "name": "Chemistry", "CategoryHeaderId": 4 },
+  { "name": "Mathematics", "CategoryHeaderId": 4 },
+  { "name": "Archaeology", "CategoryHeaderId": 5 },
+  { "name": "Social Life and Customs", "CategoryHeaderId": 5 }
+]

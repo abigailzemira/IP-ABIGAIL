@@ -27,20 +27,9 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Price is required'
-        },
-        notNull: {
-          msg: 'Price is required'
-        }
-      }
-    },
     synopsis: {
       type: DataTypes.STRING,
+      defaultValue: "No synopsis available",
       allowNull: false,
       validate: {
         notEmpty: {
@@ -62,18 +51,6 @@ module.exports = (sequelize, DataTypes) => {
         notNull: {
           msg: 'Cover is required'
         }
-      }
-    },
-    pages: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Pages is required'
-        },
-        notNull: {
-          msg: 'Pages is required'
-        } 
       }
     },
     CategoryId: {

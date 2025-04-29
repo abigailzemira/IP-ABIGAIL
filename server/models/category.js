@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Category.belongsTo(models.CategoryHeader, { foreignKey: 'CategoryHeaderId' });
       Category.hasMany(models.Book, { foreignKey: 'CategoryId' });
     }
   }
@@ -23,6 +24,18 @@ module.exports = (sequelize, DataTypes) => {
         },
         notNull: {
           msg: 'Name is required'
+        }
+      }
+    },
+    CategoryHeaderId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'CategoryHeaderId is required'
+        },
+        notNull: {
+          msg: 'CategoryHeaderId is required'
         }
       }
     }

@@ -13,20 +13,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      price: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       synopsis: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: "No synopsis available"
       },
       cover: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      pages: {
-        type: Sequelize.INTEGER,
         allowNull: false
       },
       CategoryId: {

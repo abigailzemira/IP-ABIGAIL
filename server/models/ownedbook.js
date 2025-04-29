@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: 'BookId cannot be empty'
+          msg: 'Book ID is required'
+        },
+        notNull: {
+          msg: 'Book ID is required'
         }
       }
     },
@@ -29,27 +32,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: 'UserId cannot be empty'
+          msg: 'User ID is required'
+        },
+        notNull: {
+          msg: 'User ID is required'
         }
       }
     },
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Status cannot be empty'
-        }
-      }
-    },
-    progress: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Progress cannot be empty'
-        }
-      }
+      defaultValue: 'Unread',
     }
   }, {
     sequelize,

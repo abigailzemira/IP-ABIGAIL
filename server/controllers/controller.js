@@ -138,6 +138,7 @@ class Controller {
             }
             res.status(200).json(book);
         } catch (error) {
+            console.log(error)
             next(error);
         }
     }

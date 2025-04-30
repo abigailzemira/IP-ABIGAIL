@@ -1,5 +1,5 @@
 function errorHandler(err, req, res, next) {
-    console.log(err)
+    console.log(err , "<<<< yak disini manteman")
     if(err.name === "BadRequest") {
         return res.status(400).json({ message: err.message });
     }
@@ -14,6 +14,10 @@ function errorHandler(err, req, res, next) {
 
     if(err.name === "SequelizeValidationError") {
         return res.status(400).json({ message: err.errors[0].message });
+    }
+
+    if(err.name === "JsonWebTokenError") {
+        return res.status(401).json({ message: "Invalid token" });
     }
 
   return res.status(500).json({ message: "Internal Server Error" });

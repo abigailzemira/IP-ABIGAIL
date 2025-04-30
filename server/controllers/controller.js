@@ -85,8 +85,7 @@ class Controller {
       const isValid = bcrypt.compareSync(password, user.password);
       if (!isValid) throw { name: "Unauthorized", message: "Invalid email/password" };
       const access_token = signToken({id: user.id});
-
-      return res.status(200).json(access_token);
+      return res.status(200).json({ access_token });
     } catch (error) {
       next(error);
     }
@@ -148,13 +147,15 @@ class Controller {
         try {
           console.log(req.user)
             const { bookId } = req.params;
+            const book = await Book.findByPk(bookId);
+            if (!book) throw { name: "NotFound", message: "Book not found" };
             const ownedBook = await OwnedBook.create({
                 BookId: bookId,
                 UserId: req.user.id,
             });
             res.status(201).json(ownedBook);
         } catch (error) {
-            console.log(error)
+            console.log(error, "<<<<<<< error di controller")
             next(error);
         }
     }
@@ -174,6 +175,7 @@ class Controller {
             )
 
             const ownedBook = await OwnedBook.findByPk(id);
+            if(!ownedBook) throw { name: "NotFound", message: "Owned book not found" };
             res.status(200).json(ownedBook);
         } catch (error) {
             console.log(error)

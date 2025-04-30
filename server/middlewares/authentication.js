@@ -14,6 +14,9 @@ async function authentication(req, res, next) {
 
         if(tokenType !== "Bearer") throw {name: "Unauthorized", message: "Invalid token"}
 
+        console.log(tokenValue, "<<<<<<< token value")
+
+
         const validToken = verifyToken(tokenValue);
         if (!validToken) {
             throw { name: "Unauthorized", message: "Invalid token" };   
@@ -23,6 +26,7 @@ async function authentication(req, res, next) {
         }
         next()
     } catch (error) {
+        console.log(error, "<<<<< disini salah")
         next(error);
     }
 }

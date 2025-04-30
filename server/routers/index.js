@@ -3,13 +3,17 @@ const express = require('express');
 const router = express.Router();
 const Controller = require('../controllers/controller.js');
 
+//get all books
 router.get('/', Controller.getBook);
 
 //gets all category header data along with categories
 router.get('/categoryHeaders', Controller.getCategoryHeaders);
 
-//gets all categories data along with books
+//gets all categories
 router.get('/categories', Controller.getcategory);
+
+//get category by id with books
+router.get('/categories/:id/books', Controller.getCategoryById);
 
 //login endpoint
 router.post('/login', Controller.postLogin);

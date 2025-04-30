@@ -36,15 +36,32 @@ class Controller {
   static async getcategory(req, res, next) {
     try {
       let categories = await Category.findAll({
-        include: {
-          model: Book,
-          attributes: ["id", "name", "synopsis", "cover"],
-        },
         order: [["id", "ASC"]],
       });
       res.status(200).json(categories);
     } catch (error) {
       next(error);
+    }
+  }
+
+  static async getCategoryById(req, res, next){
+    try {
+        const { id } = req.params;
+        const category = await Category.findByPk(id, {
+            include: {
+                model: Book,
+                attributes: ["id", "name", "synopsis", "cover"],
+            },
+        });
+        if (!category) {
+            throw {
+                name: "NotFound",
+                message: "Category not found",
+            };
+        }
+        res.status(200).json(category);
+    } catch (error) {
+        next(error)
     }
   }
 

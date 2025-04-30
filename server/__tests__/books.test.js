@@ -1,4 +1,4 @@
-const { request, app, testBook, testCategory, testCategoryHeader } = require('./setup');
+const { request, app, getTestBook, getTestCategory, getTestOwnedBook, getToken, getValidUser, getTestCategoryHeader } = require('./setup');
 
 describe('Books and Categories Tests', () => {
   describe('GET /categoryHeaders', () => {
@@ -26,8 +26,9 @@ describe('Books and Categories Tests', () => {
 
   describe('GET /categories/:id/books', () => {
     test('should get category by id with its books', async () => {
+      const category = getTestCategory()
       const res = await request(app)
-        .get(`/categories/${testCategory.id}/books`);
+        .get(`/categories/${category.id}/books`);
       
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('Books');
@@ -47,12 +48,13 @@ describe('Books and Categories Tests', () => {
 
   describe('GET /books/:id', () => {
     test('should get book by id with its category', async () => {
+      const books = getTestBook()
       const res = await request(app)
-        .get(`/books/${testBook.id}`);
+        .get(`/books/${books.id}`);
       
       expect(res.status).toBe(200);
-      expect(res.body).toHaveProperty('id', testBook.id);
-      expect(res.body).toHaveProperty('name', testBook.name);
+      expect(res.body).toHaveProperty('id', books.id);
+      expect(res.body).toHaveProperty('name', books.name);
       expect(res.body).toHaveProperty('Category');
       expect(res.body.Category).toHaveProperty('name');
     });

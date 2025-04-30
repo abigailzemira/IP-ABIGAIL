@@ -14,8 +14,7 @@ module.exports = {
         allowNull: false
       },
       synopsis: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.TEXT,
         defaultValue: "No synopsis available"
       },
       cover: {

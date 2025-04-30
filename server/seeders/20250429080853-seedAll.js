@@ -13,16 +13,17 @@ module.exports = {
      * }], {});
     */
 
+   let categoryHeaderData = require('../data/categoryHeaders.json')
+   categoryHeaderData = categoryHeaderData.map((categoryHeader) => {
+     delete categoryHeader.id
+     categoryHeader.createdAt = categoryHeader.updatedAt = new Date();
+     return categoryHeader
+   })
     let userData = {email: "wartortle@gmail.com", password: "user numero uno", username: "war_tortle"}
     let categoryData = require('../data/categories.json')
-    categoryData = categoryData.map((category) => {
+    categoryData = categoryData.map(({id ,...category}) => {
       category.createdAt = category.updatedAt = new Date();
       return category
-    })
-    let categoryHeaderData = require('../data/categoryHeaders.json')
-    categoryHeaderData = categoryHeaderData.map((categoryHeader) => {
-      categoryHeader.createdAt = categoryHeader.updatedAt = new Date();
-      return categoryHeader
     })
     userData.createdAt = userData.updatedAt = new Date();
 

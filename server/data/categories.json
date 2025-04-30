@@ -1,14 +1,14 @@
 [
-  { "name": "Architecture", "CategoryHeaderId": 1 },
-  { "name": "Design", "CategoryHeaderId": 1 },
-  { "name": "Film", "CategoryHeaderId": 1 },
-  { "name": "Music", "CategoryHeaderId": 1 },
-  { "name": "Fantasy", "CategoryHeaderId": 2 },
-  { "name": "Historical Fiction", "CategoryHeaderId": 2 },
-  { "name": "Humor", "CategoryHeaderId": 2 },
-  { "name": "Literature", "CategoryHeaderId": 2 },
-  { "name": "Chemistry", "CategoryHeaderId": 4 },
-  { "name": "Mathematics", "CategoryHeaderId": 4 },
-  { "name": "Archaeology", "CategoryHeaderId": 5 },
-  { "name": "Social Life and Customs", "CategoryHeaderId": 5 }
+  { "id": 1, "name": "Architecture", "CategoryHeaderId": 1 },
+  { "id": 2, "name": "Design", "CategoryHeaderId": 1 },
+  { "id": 3, "name": "Film", "CategoryHeaderId": 1 },
+  { "id": 4, "name": "Music", "CategoryHeaderId": 1 },
+  { "id": 5, "name": "Fantasy", "CategoryHeaderId": 2 },
+  { "id": 6, "name": "Historical Fiction", "CategoryHeaderId": 2 },
+  { "id": 7, "name": "Humor", "CategoryHeaderId": 2 },
+  { "id": 8, "name": "Literature", "CategoryHeaderId": 2 },
+  { "id": 9, "name": "Chemistry", "CategoryHeaderId": 4 },
+  { "id": 10, "name": "Mathematics", "CategoryHeaderId": 4 },
+  { "id": 11, "name": "Archaeology", "CategoryHeaderId": 5 },
+  { "id": 12, "name": "Social Life and Customs", "CategoryHeaderId": 5 }
 ]

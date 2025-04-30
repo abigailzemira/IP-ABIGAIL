@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     synopsis: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       defaultValue: "No synopsis available",
       allowNull: false,
       validate: {
@@ -68,6 +68,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Book',
+  });
+
+  Book.addHook('beforeValidate', (book) => {
+    if(!book.synopsis) {
+      book.synopsis = "No synopsis available";
+    }
   });
   return Book;
 };

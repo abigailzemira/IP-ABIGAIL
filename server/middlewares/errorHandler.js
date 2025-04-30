@@ -1,5 +1,5 @@
 function errorHandler(err, req, res, next) {
-
+    console.log(err)
     if(err.name === "BadRequest") {
         return res.status(400).json({ message: err.message });
     }
@@ -14,3 +14,5 @@ function errorHandler(err, req, res, next) {
 
   return res.status(500).json({ message: "Internal Server Error" });
 }
+
+module.exports = errorHandler;

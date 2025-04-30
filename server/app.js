@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const port = 3000;
 const app = express();
+const errorHandler = require('./middlewares/errorHandler.js');
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
@@ -10,6 +11,8 @@ app.use(cors());
 const routes = require('./routers/index.js');
 
 app.use('/', routes);
+app.use(errorHandler)
+app.use
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

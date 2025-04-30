@@ -17,11 +17,14 @@ const signToken = async (email, password) => {
         if (!isValid) throw { message: "Invalid password" }
         const access_token = jwt.sign({ id: user.id }, JWT_SECRET)
 
+        req.user = {
+            id: user.id
+        }
 
-            return access_token
+        return access_token
         
     } catch (error) {
-        console.log(error)
+       next(error)
     }
 }
 
@@ -30,7 +33,7 @@ const verifyToken = (token) => {
         const decoded = jwt.verify(token, JWT_SECRET)
         return decoded
     } catch (error) {
-        console.log(error)
+       next(error)
     }
 }
 

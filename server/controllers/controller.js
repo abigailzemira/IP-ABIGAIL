@@ -87,7 +87,6 @@ class Controller {
 
       return res.status(200).json(access_token);
     } catch (error) {
-        console.log(error)
       next(error);
     }
   }
@@ -106,8 +105,18 @@ class Controller {
             password,
             username
         });
-        return res.status(201).json(user);
+
+        const data = await User.findOne({
+            where: {
+                email
+            },
+            attributes: 
+                ["email", "username"]
+            });
+        
+        return res.status(201).json(data);
         } catch (error) {
+            console.log(error)
         next(error);
         }
     }

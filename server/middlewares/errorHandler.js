@@ -12,6 +12,10 @@ function errorHandler(err, req, res, next) {
         return res.status(404).json({ message: err.message });
     }
 
+    if(err.name === "SequelizeValidationError") {
+        return res.status(400).json({ message: err.errors[0].message });
+    }
+
   return res.status(500).json({ message: "Internal Server Error" });
 }
 

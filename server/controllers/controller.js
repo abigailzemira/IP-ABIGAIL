@@ -8,7 +8,7 @@ const {
   OwnedBook,
 } = require("../models");
 const { verifyToken, signToken } = require("../helpers/createToken.js");
-const { where } = require("sequelize");
+const { generateBookRecommendations } = require("../helpers/genai.js");
 class Controller {
   static async getBook(req, res, next) {
     try {
@@ -212,6 +212,32 @@ class Controller {
                 }
             })
             res.status(200).json({message: "Book removed successfully"});
+        } catch (error) {
+            console.log(error)
+            next(error);
+        }
+    }
+
+    static async getRecommendations(req, res, next) {
+        try {
+            const ownedBooks = await OwnedBook.findAll({
+                where: {
+                    UserId: req.user.id
+                },
+                include: {
+                    model: Book,
+                    attributes: ["id", "name", "synopsis", "cover", "CategoryId"],
+                    include: {
+                        model: Category,
+                        attributes: ["id", "name"],
+                    },
+                },
+            });
+            if (ownedBooks.length === 0) {
+                return res.status(200).json([]);
+            }
+            const recommendations = await generateBookRecommendations(ownedBooks);
+            res.status(200).json(recommendations);
         } catch (error) {
             console.log(error)
             next(error);

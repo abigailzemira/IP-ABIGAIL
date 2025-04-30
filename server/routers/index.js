@@ -36,4 +36,7 @@ router.get('/ownedBooks', authentication, Controller.getOwnedBooks);
 
 //delete owned book
 router.delete('/ownedBooks/:id', authentication, Controller.deleteOwnedBook);
+
+//get reccommendations
+router.get('/recommendations', authentication, Controller.getRecommendations);
 module.exports = router;

@@ -30,4 +30,10 @@ router.post('/ownedBooks/:bookId', authentication, Controller.postOwnedBook);
 
 //update owned book
 router.put('/ownedBooks/:id', authentication, Controller.updateOwnedBook);
+
+// get all owned books
+router.get('/ownedBooks', authentication, Controller.getOwnedBooks);
+
+//delete owned book
+router.delete('/ownedBooks/:id', authentication, Controller.deleteOwnedBook);
 module.exports = router;

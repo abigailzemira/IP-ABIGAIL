@@ -180,6 +180,41 @@ class Controller {
             next(error);
         }
     } 
+
+    static async getOwnedBooks(req, res, next) {
+        try {
+            const ownedBooks = await OwnedBook.findAll({
+                where: {
+                    UserId: req.user.id
+                },
+                include: {
+                    model: Book,
+                    attributes: ["id", "name", "synopsis", "cover"],
+                },
+            });
+            res.status(200).json(ownedBooks);
+        } catch (error) {
+            console.log(error)
+            next(error);
+        }
+    }
+
+    static async deleteOwnedBook(req, res, next) {
+        try {
+            const { id } = req.params;
+            const ownedBook = await OwnedBook.findByPk(id);
+            if (!ownedBook) throw { name: "NotFound", message: "Owned book not found" };
+            await OwnedBook.destroy({
+                where: {
+                    id,
+                }
+            })
+            res.status(200).json({message: "Book removed successfully"});
+        } catch (error) {
+            console.log(error)
+            next(error);
+        }
+    }
 }
 
 module.exports = Controller;

@@ -1,4 +1,5 @@
 const axios = require("axios");
+const bcrypt = require('bcryptjs');
 const {
   Category,
   CategoryHeader,
@@ -79,10 +80,14 @@ class Controller {
           email,
         },
       });
-      const access_token = signToken(email, password);
+      if(!user) throw { name: "Unauthorized", message: "Invalid email/password" };
+      const isValid = bcrypt.compareSync(password, user.password);
+      if (!isValid) throw { name: "Unauthorized", message: "Invalid email/password" };
+      const access_token = signToken({id: user.id});
 
-      return res.status(200).json({ access_token });
+      return res.status(200).json(access_token);
     } catch (error) {
+        console.log(error)
       next(error);
     }
   }

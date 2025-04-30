@@ -66,11 +66,10 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
-  User.beforeCreate((user) => {
-    const salt = bcrypt.genSaltSync(10);
-    user.password = bcrypt.hashSync(user.password, salt);
-  }
-  );
+  User.addHook('beforeCreate', (user, options) => {
+    let salt = bcrypt.genSaltSync(10)
+    user.password = bcrypt.hashSync(user.password, salt)
+  })
 
   return User;
 };

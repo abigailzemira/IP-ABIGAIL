@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcryptjs')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -20,6 +21,9 @@ module.exports = {
      return categoryHeader
    })
     let userData = {email: "wartortle@gmail.com", password: "user numero uno", username: "war_tortle"}
+    let salt = bcrypt.genSaltSync(10)
+    userData.password = bcrypt.hashSync(userData.password, salt)
+    
     let categoryData = require('../data/categories.json')
     categoryData = categoryData.map(({id ,...category}) => {
       category.createdAt = category.updatedAt = new Date();

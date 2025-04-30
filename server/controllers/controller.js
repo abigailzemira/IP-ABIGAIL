@@ -145,14 +145,15 @@ class Controller {
 
     static async postOwnedBook(req, res, next) {
         try {
-            const { id } = req.params;
-            const { UserId } = req.body;
+          console.log(req.user)
+            const { bookId } = req.params;
             const ownedBook = await OwnedBook.create({
-                BookId: id,
-                UserId,
+                BookId: bookId,
+                UserId: req.user.id,
             });
             res.status(201).json(ownedBook);
         } catch (error) {
+            console.log(error)
             next(error);
         }
     }

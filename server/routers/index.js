@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Controller = require('../controllers/controller.js');
+const authentication = require('../middlewares/authentication.js');
 
 //get all books
 router.get('/', Controller.getBook);
@@ -25,5 +26,5 @@ router.post('/register', Controller.postRegister);
 router.get('/books/:id', Controller.getBookById);
 
 //add books to owned books
-router.post('/books/:id', Controller.postOwnedBook);
+router.post('/books/:bookId', authentication, Controller.postOwnedBook);
 module.exports = router;

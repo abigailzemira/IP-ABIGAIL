@@ -8,6 +8,7 @@ const {
   OwnedBook,
 } = require("../models");
 const { verifyToken, signToken } = require("../helpers/createToken.js");
+const { where } = require("sequelize");
 class Controller {
   static async getBook(req, res, next) {
     try {
@@ -157,6 +158,28 @@ class Controller {
             next(error);
         }
     }
+
+    static async updateOwnedBook(req, res, next) {  
+        try {
+            const { id } = req.params;
+            const { status } = req.body;
+            if (!status) throw { name: "BadRequest", message: "Status is required" };
+            await OwnedBook.update(
+              {status},
+              {
+                where: {
+                  id,
+                }
+              }
+            )
+
+            const ownedBook = await OwnedBook.findByPk(id);
+            res.status(200).json(ownedBook);
+        } catch (error) {
+            console.log(error)
+            next(error);
+        }
+    } 
 }
 
 module.exports = Controller;

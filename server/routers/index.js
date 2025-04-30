@@ -26,5 +26,8 @@ router.post('/register', Controller.postRegister);
 router.get('/books/:id', Controller.getBookById);
 
 //add books to owned books
-router.post('/books/:bookId', authentication, Controller.postOwnedBook);
+router.post('/ownedBooks/:bookId', authentication, Controller.postOwnedBook);
+
+//update owned book
+router.put('/ownedBooks/:id', authentication, Controller.updateOwnedBook);
 module.exports = router;

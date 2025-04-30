@@ -1,220 +1,213 @@
 # Individual Project Phase 2
 
+## Books API Documentation
 
-Backup: 
+### Base URL
+```
+http://localhost:3000
+```
 
-let art = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/arts.json",
-    });
-    art = await Promise.all(
-      art.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+### Authentication
+Some endpoints require authentication using a JWT token. Include the token in the Authorization header:
+```
+Authorization: Bearer <access_token>
+```
 
-    let architecture = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/architecture.json",
-    });
-    architecture = await Promise.all(
-      architecture.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+### Endpoints
 
-    let design = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/design.json",
-    });
-    design = await Promise.all(
-      design.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+#### Authentication
 
-    let film = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/film.json",
-    });
-    film = await Promise.all(
-      film.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+##### Register User
+- **POST** `/register`
+- **Body:**
+  ```json
+  {
+    "email": "string",
+    "password": "string",
+    "username": "string"
+  }
+  ```
+- **Success Response (201):**
+  ```json
+  {
+    "email": "string",
+    "username": "string"
+  }
+  ```
 
-    let graphicDesign = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/graphic_design.json",
-    });
-    graphicDesign = await Promise.all(
-      graphicDesign.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+##### Login
+- **POST** `/login`
+- **Body:**
+  ```json
+  {
+    "email": "string",
+    "password": "string"
+  }
+  ```
+- **Success Response (200):**
+  ```json
+  {
+    "access_token": "string"
+  }
+  ```
 
-    let music = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/music.json",
-    });
-    music = await Promise.all(
-      music.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+#### Categories
 
-    let painting = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/painting.json",
-    });
-    painting = await Promise.all(
-      painting.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+##### Get All Category Headers
+- **GET** `/categoryHeaders`
+- **Success Response (200):**
+  ```json
+  [
+    {
+      "id": "number",
+      "name": "string",
+      "Categories": [
+        {
+          "id": "number",
+          "name": "string"
+        }
+      ]
+    }
+  ]
+  ```
 
-    let photography = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/photography.json",
-    });
-    photography = await Promise.all(
-      photography.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+##### Get All Categories
+- **GET** `/categories`
+- **Success Response (200):**
+  ```json
+  [
+    {
+      "id": "number",
+      "name": "string"
+    }
+  ]
+  ```
 
-    let fantasy = await axios({
-      method: "GET",
-      url: "https://openlibrary.org/subjects/fantasy.json",
-    });
-    fantasy = await Promise.all(
-      fantasy.data.works.map(async (book) => {
-        book.createdAt = book.updatedAt = new Date();
-        const synopsis = await axios({
-          method: "GET",
-          url: `https://openlibrary.org/works/${book.key}.json`,
-        });
-        return {
-          name: book.title,
-          synopsis: synopsis.data.description,
-          cover: book.lending_edition
-            ? `https://covers.openlibrary.org/b/id/${book.lending_edition}-L.jpg`
-            : `https://covers.openlibrary.org/b/id/${book.cover_edition_key}-L.jpg`,
-          CategoryId: 3,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-      })
-    );
+##### Get Category Books
+- **GET** `/categories/:id/books`
+- **Success Response (200):**
+  ```json
+  {
+    "id": "number",
+    "name": "string",
+    "Books": [
+      {
+        "name": "string",
+        "synopsis": "string",
+        "cover": "string"
+      }
+    ]
+  }
+  ```
+- **Error Response (404):**
+  ```json
+  {
+    "message": "Category not found"
+  }
+  ```
+
+#### Books
+
+##### Get All Books
+- **GET** `/`
+- **Success Response (200):**
+  ```json
+  [
+    {
+      "id": "number",
+      "name": "string"
+    }
+  ]
+  ```
+
+##### Get Book by ID
+- **GET** `/books/:id`
+- **Success Response (200):**
+  ```json
+  {
+    "id": "number",
+    "name": "string",
+    "Category": {
+      "id": "number",
+      "name": "string"
+    }
+  }
+  ```
+- **Error Response (404):**
+  ```json
+  {
+    "message": "Book not found"
+  }
+  ```
+
+#### Owned Books (Protected Routes)
+All these endpoints require authentication.
+
+##### Get User's Owned Books
+- **GET** `/ownedBooks`
+- **Required:** Authentication
+- **Success Response (200):**
+  ```json
+  [
+    {
+      "id": "number",
+      "bookId": "number",
+      "userId": "number"
+    }
+  ]
+  ```
+
+##### Add Book to Owned Books
+- **POST** `/ownedBooks/:bookId`
+- **Required:** Authentication
+- **Success Response (201):**
+  ```json
+  {
+    "id": "number",
+    "bookId": "number",
+    "userId": "number"
+  }
+  ```
+
+##### Update Owned Book
+- **PUT** `/ownedBooks/:id`
+- **Required:** Authentication
+- **Success Response (200):**
+  ```json
+  {
+    "message": "Owned book updated successfully"
+  }
+  ```
+
+##### Delete Owned Book
+- **DELETE** `/ownedBooks/:id`
+- **Required:** Authentication
+- **Success Response (200):**
+  ```json
+  {
+    "message": "Owned book deleted successfully"
+  }
+  ```
+
+### Error Responses
+All endpoints may return these errors:
+
+- **500 Internal Server Error:**
+  ```json
+  {
+    "message": "Internal Server Error"
+  }
+  ```
+- **401 Unauthorized:**
+  ```json
+  {
+    "message": "Invalid email/password"
+  }
+  ```
+- **400 Bad Request:**
+  ```json
+  {
+    "message": "Email and password are required"
+  }
+  ```
+

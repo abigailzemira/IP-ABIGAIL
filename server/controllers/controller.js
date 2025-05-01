@@ -1,5 +1,7 @@
 const axios = require("axios");
 const bcrypt = require('bcryptjs');
+const {OAuth2Client} = require('google-auth-library')
+const client = new OAuth2Client();
 const {
   Category,
   CategoryHeader,
@@ -113,12 +115,39 @@ class Controller {
             attributes: 
                 ["email", "username"]
             });
-        
         return res.status(201).json(data);
         } catch (error) {
             console.log(error)
         next(error);
         }
+    }
+
+    static async googleLogin(req, res, next) {
+      try {
+        const { googleToken } = req.body
+        if (!googleToken) throw { name: "BadRequest", message: "Google Token is required" }
+  
+        const ticket = await client.verifyIdToken({
+          idToken: googleToken,
+          audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const payload = ticket.getPayload()
+        console.log(payload, "<<<<<<< payload")
+  
+        const [user] = await User.findOrCreate({
+          where: { email: payload.email },
+          defaults: {
+            password: "12345678",
+            username: payload.name,
+          }
+        })
+        // kalo udah -> generate token
+  
+        const access_token = signToken({ id: user.id })
+        res.status(200).json({ access_token })
+      } catch (err) {
+        next(err);
+      }
     }
 
     static async getBookById(req, res, next) {

@@ -19,6 +19,9 @@ router.get('/categories/:id/books', Controller.getCategoryById);
 //login endpoint
 router.post('/login', Controller.postLogin);
 
+//login endpoint with google
+router.post('/login/google', Controller.googleLogin);
+
 //register endpoint
 router.post('/register', Controller.postRegister);
 

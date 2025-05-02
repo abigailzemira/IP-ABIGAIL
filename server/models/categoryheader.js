@@ -14,7 +14,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CategoryHeader.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        notNull: {
+          msg: "Name is required"
+        }
+      }
+    },
+    imageUrl: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'CategoryHeader',

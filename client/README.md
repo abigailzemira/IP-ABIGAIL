@@ -10,3 +10,26 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+
+
+Backup:
+<div className="h-11/12">
+        <div className="carousel w-full h-2/5" data-carousel="slide">
+          {categoryHeader.map((header) => {
+            return (
+              <div
+                id={`#slide${header.id}`}
+                className="carousel-item relative w-full duration-700 ease-in-out"
+                key={header.id}
+                data-carousel-item="true"
+              >
+                <img
+                  src={header.imageUrl}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
+        </div>

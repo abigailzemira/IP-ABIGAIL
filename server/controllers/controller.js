@@ -12,16 +12,6 @@ const {
 const { verifyToken, signToken } = require("../helpers/createToken.js");
 const { generateBookRecommendations } = require("../helpers/genai.js");
 class Controller {
-  static async getBook(req, res, next) {
-    try {
-      //
-
-      res.status(200).json(categories);
-    } catch (error) {
-      next(error);
-    }
-  }
-
   static async getCategoryHeaders(req, res, next) {
     try {
       let categoryWHeaders = await CategoryHeader.findAll({
@@ -31,6 +21,7 @@ class Controller {
         },
         order: [["id", "ASC"]],
       });
+      // console.log(categoryWHeaders, "<<<<<<< categoryWHeaders")
       res.status(200).json(categoryWHeaders);
     } catch (error) {
       next(error);
@@ -63,6 +54,7 @@ class Controller {
                 message: "Category not found",
             };
         }
+        console.log(category, "<<<<<<< category")
         res.status(200).json(category);
     } catch (error) {
         next(error)
@@ -132,7 +124,6 @@ class Controller {
           audience: process.env.GOOGLE_CLIENT_ID,
         });
         const payload = ticket.getPayload()
-        console.log(payload, "<<<<<<< payload")
   
         const [user] = await User.findOrCreate({
           where: { email: payload.email },

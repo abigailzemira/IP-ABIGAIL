@@ -1,7 +1,7 @@
 [
-  { "id": 1, "name": "Arts" },
-  { "id": 2, "name": "Fiction" },
-  { "id": 3, "name": "Business & Finance" },
-  { "id": 4, "name": "Science & Mathematics" },
-  { "id": 5, "name": "History" }
+  { "id": 1, "name": "Arts", "imageUrl": "https://i.pinimg.com/736x/c4/fd/ae/c4fdaed6b6c0436e7f28d847d3e0b881.jpg"},
+  { "id": 2, "name": "Fiction", "imageUrl" : "https://www.franklinartstudio.com.au/cdn/shop/files/P1300841.jpg?v=1693022016&width=3000"},
+  { "id": 3, "name": "Business & Finance", "imageUrl": "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { "id": 4, "name": "Science & Mathematics", "imageUrl": "https://images.unsplash.com/photo-1453733190371-0a9bedd82893?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { "id": 5, "name": "History", "imageUrl": "https://images.unsplash.com/photo-1578321270951-88bd84d09a64?q=80&w=2007&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
 ]

@@ -9,7 +9,8 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  async function handleLogin() {
+  async function handleLogin(e) {
+    e.preventDefault()
     try {
       const response = await axios({
         method: 'POST',
@@ -26,6 +27,7 @@ export default function Login() {
       })
       navigate('/')
     } catch (error) {
+      console.log(error)
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -84,7 +86,7 @@ export default function Login() {
             <h1>Login</h1>
           <div className="fieldset blur2xl rounded-box w-xs border p-4 h-auto">
             <label className="label">Email</label>
-            <input name="email" value={password} type="email" className="input" placeholder="Email"
+            <input name="email" value={email} type="email" className="input" placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -94,9 +96,23 @@ export default function Login() {
             />
 
             <button type="submit" className="btn btn-neutral mt-4">Login</button>
+
+
+          <p className="mt-10 text-center text-sm/6 text-gray-500 bg-white rounded-box p-2">
+              Don't have an account? 
+              <a
+                class="font-semibold text-indigo-600 hover:text-indigo-500"
+                onClick={() => {
+                  navigate("/register")
+                }}
+              >
+                Register here
+              </a>
+            </p>
           </div>
+                <div id="buttonDiv"></div>
+         
         </form>
-          <div id="buttonDiv"></div>
         </div>
     </>
   );

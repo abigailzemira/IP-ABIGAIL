@@ -25,6 +25,8 @@ Format your response as a JSON array of book recommendations, where each recomme
 - title: The book title
 - author: The author's name (if you think it's relevant)
 - reason: A brief explanation of why you're recommending this book based on their current collection
+- cover: Include the image url for the book cover derived from Owned Books table
+- id: include the bookId derived from the Owned Books table
 
 Be specific about why each recommendation matches their interests based on their current books.`;
 

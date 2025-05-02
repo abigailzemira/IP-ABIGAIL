@@ -34,6 +34,17 @@ Authorization: Bearer <access_token>
     "username": "string"
   }
   ```
+- **Error Response (400):**
+  ```json
+  {
+    "message": "Email and password are required"
+  }
+  ```
+  ```json
+  {
+    "message": "Email already in use"
+  }
+  ```
 
 ##### Login
 - **POST** `/login`
@@ -50,6 +61,39 @@ Authorization: Bearer <access_token>
     "access_token": "string"
   }
   ```
+- **Error Response (401):**
+  ```json
+  {
+    "message": "Invalid email/password"
+  }
+  ```
+
+##### Google Login
+- **POST** `/login/google`
+- **Body:**
+  ```json
+  {
+    "googleToken": "string"
+  }
+  ```
+- **Success Response (200):**
+  ```json
+  {
+    "access_token": "string"
+  }
+  ```
+- **Error Response (400):**
+  ```json
+  {
+    "message": "Google Token is required"
+  }
+  ```
+- **Error Response (401):**
+  ```json
+  {
+    "message": "Invalid token"
+  }
+  ```
 
 #### Categories
 
@@ -61,6 +105,7 @@ Authorization: Bearer <access_token>
     {
       "id": "number",
       "name": "string",
+      "imageUrl": "string",
       "Categories": [
         {
           "id": "number",
@@ -92,6 +137,7 @@ Authorization: Bearer <access_token>
     "name": "string",
     "Books": [
       {
+        "id": "number",
         "name": "string",
         "synopsis": "string",
         "cover": "string"
@@ -108,18 +154,6 @@ Authorization: Bearer <access_token>
 
 #### Books
 
-##### Get All Books
-- **GET** `/`
-- **Success Response (200):**
-  ```json
-  [
-    {
-      "id": "number",
-      "name": "string"
-    }
-  ]
-  ```
-
 ##### Get Book by ID
 - **GET** `/books/:id`
 - **Success Response (200):**
@@ -127,6 +161,8 @@ Authorization: Bearer <access_token>
   {
     "id": "number",
     "name": "string",
+    "synopsis": "string",
+    "cover": "string",
     "Category": {
       "id": "number",
       "name": "string"
@@ -151,8 +187,15 @@ All these endpoints require authentication.
   [
     {
       "id": "number",
-      "bookId": "number",
-      "userId": "number"
+      "BookId": "number",
+      "UserId": "number",
+      "status": "string",
+      "Book": {
+        "id": "number",
+        "name": "string",
+        "synopsis": "string",
+        "cover": "string"
+      }
     }
   ]
   ```
@@ -164,18 +207,46 @@ All these endpoints require authentication.
   ```json
   {
     "id": "number",
-    "bookId": "number",
-    "userId": "number"
+    "BookId": "number",
+    "UserId": "number",
+    "status": "string"
+  }
+  ```
+- **Error Response (404):**
+  ```json
+  {
+    "message": "Book not found"
   }
   ```
 
 ##### Update Owned Book
 - **PUT** `/ownedBooks/:id`
 - **Required:** Authentication
+- **Body:**
+  ```json
+  {
+    "status": "string"
+  }
+  ```
 - **Success Response (200):**
   ```json
   {
-    "message": "Owned book updated successfully"
+    "id": "number",
+    "BookId": "number",
+    "UserId": "number",
+    "status": "string"
+  }
+  ```
+- **Error Response (400):**
+  ```json
+  {
+    "message": "Status is required"
+  }
+  ```
+- **Error Response (404):**
+  ```json
+  {
+    "message": "Owned book not found"
   }
   ```
 
@@ -185,9 +256,34 @@ All these endpoints require authentication.
 - **Success Response (200):**
   ```json
   {
-    "message": "Owned book deleted successfully"
+    "message": "Book removed successfully"
   }
   ```
+- **Error Response (404):**
+  ```json
+  {
+    "message": "Owned book not found"
+  }
+  ```
+
+#### Recommendations (Protected Route)
+
+##### Get Book Recommendations
+- **GET** `/recommendations`
+- **Required:** Authentication
+- **Success Response (200):**
+  ```json
+  [
+    {
+      "title": "string",
+      "author": "string",
+      "reason": "string",
+      "cover": "string",
+      "id": "number"
+    }
+  ]
+  ```
+- Empty array is returned if user has no books
 
 ### Error Responses
 All endpoints may return these errors:
@@ -201,13 +297,12 @@ All endpoints may return these errors:
 - **401 Unauthorized:**
   ```json
   {
-    "message": "Invalid email/password"
+    "message": "Please login first"
   }
   ```
-- **400 Bad Request:**
   ```json
   {
-    "message": "Email and password are required"
+    "message": "Invalid token"
   }
   ```
 

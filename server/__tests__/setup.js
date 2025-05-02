@@ -14,8 +14,6 @@ let testCategory;
 let testBook;
 let testOwnedBook;
 
-
-
 beforeAll(async () => {
   try {
     // Create test user
@@ -29,11 +27,11 @@ beforeAll(async () => {
       id: testUser.id,
       email: testUser.email
     });
-    console.log(access_token, "<<<<< access token")
 
     // Create test category header
     testCategoryHeader = await CategoryHeader.create({
-      name: "Test Header"
+      name: "Test Header",
+      imageUrl: "test-image.jpg"
     });
 
     // Create test category
@@ -45,10 +43,8 @@ beforeAll(async () => {
     // Create test book
     testBook = await Book.create({
       name: "Test Book",
-      price: 10000,
       synopsis: "Test synopsis",
       cover: "test-cover.jpg",
-      pages: 100,
       CategoryId: testCategory.id
     });
 
@@ -56,8 +52,7 @@ beforeAll(async () => {
     testOwnedBook = await OwnedBook.create({
       BookId: testBook.id,
       UserId: validUserId,
-      status: "reading",
-      progress: 0
+      status: "Unread"
     });
   } catch (error) {
     console.error('Test setup failed:', error);
@@ -78,25 +73,28 @@ afterAll(async () => {
 });
 
 function getValidUser() {
-  return  validUserId 
+  return validUserId;
 }
 
 function getToken() {
-    return access_token
-}
-function getTestCategoryHeader() {
-    return  testCategoryHeader 
-}
-function getTestCategory() {
-    return testCategory 
-}
-function getTestBook() {
-    return testBook
-}
-function getTestOwnedBook() {
-    return testOwnedBook
+  return access_token;
 }
 
+function getTestCategoryHeader() {
+  return testCategoryHeader;
+}
+
+function getTestCategory() {
+  return testCategory;
+}
+
+function getTestBook() {
+  return testBook;
+}
+
+function getTestOwnedBook() {
+  return testOwnedBook;
+}
 
 module.exports = {
   request,

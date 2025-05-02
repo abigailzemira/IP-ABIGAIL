@@ -4,9 +4,6 @@ const router = express.Router();
 const Controller = require('../controllers/controller.js');
 const authentication = require('../middlewares/authentication.js');
 
-//get all books
-router.get('/', Controller.getBook);
-
 //gets all category header data along with categories
 router.get('/categoryHeaders', Controller.getCategoryHeaders);
 

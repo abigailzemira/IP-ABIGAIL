@@ -40,8 +40,8 @@ module.exports = {
                    name: el.title,
                    synopsis: availableSynopsis ? availableSynopsis : "No synopsis available",
                    cover: el.lending_edition
-                     ? `https://covers.openlibrary.org/b/id/${el.lending_edition}-L.jpg`
-                     : `https://covers.openlibrary.org/b/id/${el.cover_edition_key}-L.jpg`,
+                     ? `https://covers.openlibrary.org/b/olid/${el.lending_edition}-L.jpg`
+                     : `https://covers.openlibrary.org/b/olid/${el.cover_edition_key}-L.jpg`,
                    CategoryId: category.id,
                    createdAt: new Date(),
                    updatedAt: new Date(),

@@ -1,19 +1,31 @@
 import "../App.css";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import Drawer from "./Drawer";
+import { useState } from "react";
 export default function Navbar() {
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm sticky top-0 z-10">
+      <div className="navbar bg-base-100 shadow-sm sticky top-0 flex justify-between z-100">
+        <Drawer/>
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl" style={{ fontFamily: "SourceCodePro" }}
+          onClick={() => {
+            navigate("/");
+          }}
+          >BookMark</a>
         </div>
         <div className="flex gap-2">
           <input
             type="text"
             placeholder="Search"
+            value={search}
             className="input input-bordered w-24 md:w-auto"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
           />
           <div className="dropdown dropdown-end">
             <div
@@ -32,16 +44,7 @@ export default function Navbar() {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
+             {localStorage.getItem("access_token") ? <li>
                 <button
                 onClick={() => {
                   localStorage.removeItem("access_token")
@@ -54,7 +57,13 @@ export default function Navbar() {
                 }}
                 
                 >Logout</button>
-              </li>
+              </li> : <li>
+                <button
+                onClick={() => {
+                  navigate("/login")
+                }}
+                >Login</button>
+                </li>}
             </ul>
           </div>
         </div>

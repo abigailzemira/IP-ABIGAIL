@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "```\r http://localhost:3000\r ```",
   "dependencies": {
     "@google/genai": "^0.10.0",
     "axios": "^1.9.0",

@@ -20,6 +20,7 @@ export default function Login() {
           password
         }
       })
+      console.log(response, "<<<<<<< response from login")
       localStorage.setItem('access_token', response.data.access_token)
       Swal.fire({
         icon: 'success',
@@ -101,7 +102,7 @@ export default function Login() {
           <p className="mt-10 text-center text-sm/6 text-gray-500 bg-white rounded-box p-2">
               Don't have an account? 
               <a
-                class="font-semibold text-indigo-600 hover:text-indigo-500"
+                className="font-semibold text-indigo-600 hover:text-indigo-500"
                 onClick={() => {
                   navigate("/register")
                 }}

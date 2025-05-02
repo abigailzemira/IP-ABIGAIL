@@ -1,7 +1,7 @@
 //create token after login
 
 const jwt = require("jsonwebtoken")
-const { JWT_SECRET } = process.env
+const {JWT_SECRET} = process.env
 
 const signToken = (data) => {
     return jwt.sign(data, JWT_SECRET)

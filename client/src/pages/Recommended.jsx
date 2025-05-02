@@ -45,10 +45,7 @@ export default function Recommended() {
               return (
                 <div className="card card-xs w-40 h-52 bg-base-100 shadow-sm" key={el.id}>
                   <figure className="h-full object-cover">
-                    <img
-                      src={el.cover}
-                      alt="Shoes"
-                    />
+                    <p>{el.name}</p>
                   </figure>
                   <div className="card-actions justify-end">
                     <button className="btn btn-neutral btn-outline"

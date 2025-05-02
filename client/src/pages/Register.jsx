@@ -10,7 +10,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 
-  async function handleRegister() {
+  async function handleRegister(e) {
+    e.preventDefault();
     try {
       const response = await axios({
         method: "POST",
@@ -27,6 +28,7 @@ export default function Register() {
       });
       navigate("/login");
     } catch (error) {
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -61,7 +63,7 @@ export default function Register() {
             <label className="label">Email</label>
             <input
               name="email"
-              value={password}
+              value={email}
               type="email"
               className="input"
               placeholder="Email"
@@ -79,12 +81,12 @@ export default function Register() {
             />
 
             <button type="submit" className="btn btn-neutral mt-4">
-              Login
+              Register
             </button>
-            <p class="mt-10 text-center text-sm/6 text-gray-500 bg-white rounded-box p-2">
+            <p className="mt-10 text-center text-sm/6 text-gray-500 bg-white rounded-box p-2">
               Already have an account?
               <a
-                class="font-semibold text-indigo-600 hover:text-indigo-500"
+                className="font-semibold text-indigo-600 hover:text-indigo-500"
                 onClick={() => {
                   navigate("/login")
                 }}

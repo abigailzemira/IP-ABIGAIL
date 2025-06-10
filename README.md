@@ -1,6 +1,6 @@
-# IP-ABIGAIL
+# BookMark
 
-IP-ABIGAIL is a full-stack application designed to help users keep track of the books they've read. Users can search for books, add them to their personal collection, manage their reading status, and receive book recommendations based on their collection.
+BookMark is a full-stack application designed to help users keep track of the books they've read. Users can search for books, add them to their personal collection, manage their reading status, and receive book recommendations based on their collection.
 
 ## Features
 
